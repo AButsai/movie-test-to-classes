@@ -17,8 +17,11 @@ export class UserService implements IUserService {
     return userInserted
   }
 
-  async getUser(field: keyof User, value: string) {
-    const whereCondition: FindOneOptions<User> = { where: { [field]: value } }
+  async getUser(field: keyof User, value: string, includePassword = false) {
+    const whereCondition: FindOneOptions<User> = {
+      where: { [field]: value },
+      select: includePassword ? undefined : ['id', 'email', 'username'],
+    }
 
     return await this._service.findOne(whereCondition)
   }

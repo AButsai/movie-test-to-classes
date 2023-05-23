@@ -13,7 +13,7 @@ const user = new Authentication(userService)
 const authRouter = Router()
 
 authRouter.get('/logout', validationSuccessToken, controllerWrapper(user.logout.bind(user)))
-authRouter.get('/current', controllerWrapper(user.current.bind(user)))
+authRouter.get('/current', validationSuccessToken, controllerWrapper(user.current.bind(user)))
 authRouter.post('/register', validationBody(joiSchemaRegister), controllerWrapper(user.register.bind(user)))
 authRouter.post('/login', validationBody(joiSchemaLogin), controllerWrapper(user.login.bind(user)))
 

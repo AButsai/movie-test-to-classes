@@ -64,6 +64,6 @@ export class MovieController implements IMovieController {
     const { movieId } = req.params
     await this.getUser(email)
     const movie = await this._movieService.deleteMovie(movieId)
-    res.status(200).json({ data: { movie } })
+    res.status(200).json({ message: 'Movie deleted' })
   }
 }

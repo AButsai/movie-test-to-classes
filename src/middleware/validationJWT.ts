@@ -2,9 +2,7 @@ import { NextFunction, Request, Response } from 'express'
 import jwt, { JwtPayload } from 'jsonwebtoken'
 
 import { ErrorTokenTypeInvalid, ErrorUnauthorized, factoryErrorJWT } from '../errors/ErrorProcessing.js'
-// import { getTokenByOwner } from '../services/tokenService/index.js'
-// import { getUser } from '../services/userService/index.js'
-import { UserService } from '../services/userService/userService.js'
+import { UserService } from '../services/userSevice/userService.js'
 
 const { ACCESS_TOKEN_PRIVATE_KEY, REFRESH_TOKEN_PRIVATE_KEY } = process.env
 

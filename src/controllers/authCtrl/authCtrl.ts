@@ -26,7 +26,7 @@ export class Authentication implements IAuthentication {
 
   async login(req: Request, res: Response) {
     const { email, password } = req.body
-    const candidate = await this._services.getUser('email', email.toLowerCase().trim())
+    const candidate = await this._services.getUser('email', email.toLowerCase().trim(), true)
     if (!candidate || !comparePassword(password, candidate.password)) {
       throw new ErrorLogin()
     }
