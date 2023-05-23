@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import jwt from 'jsonwebtoken'
 
 export class RequestError extends Error {

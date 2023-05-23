@@ -6,9 +6,8 @@ import 'reflect-metadata'
 import { AppDataSource } from './data-source.js'
 import { RequestError } from './errors/ErrorProcessing.js'
 
-// import authRouter from './routes/api/authRouter.js'
-// import contactsRouter from './routes/api/contactsRouter.js'
-// import userRouter from './routes/api/userRouter.js'
+import authRouter from './routes/api/authRouter.js'
+import movieRouter from './routes/api/movieRouter.js'
 
 dotenv.config()
 
@@ -18,16 +17,14 @@ const app: Express = express()
 app.use(cors())
 app.use(express.json())
 
-// app.use('/api/auth', authRouter)
-// app.use('/api/user', userRouter)
-// app.use('/api/contacts', contactsRouter)
+app.use('/api/auth', authRouter)
+app.use('/api/movies', movieRouter)
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({ message: 'Not found' })
 })
 
 app.use((err: { status: number; message: string }, req: Request, res: Response, next: NextFunction) => {
-  console.log('err', err)
   if (err instanceof RequestError) {
     const { status, message } = err
     return res.status(status).json({ message })
